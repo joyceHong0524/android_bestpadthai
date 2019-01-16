@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
-import com.example.jung.bestpadthai.BestFoodInfoActivity;
-import com.example.jung.bestpadthai.BestFoodRegisterActivity;
-import com.example.jung.bestpadthai.ProfileActivity;
+//import com.example.jung.bestpadthai.BestFoodInfoActivity;
+//import com.example.jung.bestpadthai.BestFoodRegisterActivity;
+//import com.example.jung.bestpadthai.ProfileActivity;
 
 /**
  * 액티비티나 프래그먼트 실행 라이브러리
@@ -66,21 +66,21 @@ public class GoLib {
      * 프로파일 액티비티를 실행한다.
      * @param context 컨텍스트
      */
-    public void goProfileActivity(Context context) {
-        Intent intent = new Intent(context, ProfileActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
-    }
-
-    /**
-     * 맛집 정보 등록 액티비티를 실행한다.
-     * @param context 컨텍스트
-     */
-    public void goBestFoodRegisterActivity(Context context) {
-        Intent intent = new Intent(context, BestFoodRegisterActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
-    }
+//    public void goProfileActivity(Context context) {
+//        Intent intent = new Intent(context, ProfileActivity.class);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        context.startActivity(intent);
+//    }
+//
+//    /**
+//     * 맛집 정보 등록 액티비티를 실행한다.
+//     * @param context 컨텍스트
+//     */
+//    public void goBestFoodRegisterActivity(Context context) {
+//        Intent intent = new Intent(context, BestFoodRegisterActivity.class);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        context.startActivity(intent);
+//    }
 
 
     /**
@@ -88,9 +88,9 @@ public class GoLib {
      * @param context 컨텍스트
      * @param infoSeq 맛집 정보 일련번호
      */
-    public void goBestFoodInfoActivity(Context context, int infoSeq) {
-        Intent intent = new Intent(context, BestFoodInfoActivity.class);
-        intent.putExtra(BestFoodInfoActivity.INFO_SEQ, infoSeq);
-        context.startActivity(intent);
-    }
+//    public void goBestFoodInfoActivity(Context context, int infoSeq) {
+//        Intent intent = new Intent(context, BestFoodInfoActivity.class);
+//        intent.putExtra(BestFoodInfoActivity.INFO_SEQ, infoSeq);
+//        context.startActivity(intent);
+//    }
 }
