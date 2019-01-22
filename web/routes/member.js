@@ -6,14 +6,13 @@ var router = express.Router();
 //member/:phone
 router.get('/:phone', function(req, res, next) {
   var phone = req.params.phone;
+  
   var sql = "select * " +
             "from bestfood_member " + 
             "where phone = ? limit 1;";  
   console.log("sql : " + sql);    
 	
 	db.get().query(sql, phone, function (err, rows) {
-
-  
       console.log("rows : " + JSON.stringify(rows));
       console.log("row.length : " + rows.length);
       if (rows.length > 0) {
@@ -22,10 +21,6 @@ router.get('/:phone', function(req, res, next) {
         res.sendStatus(400);
       }
   });
-
-  db.get().query(sql, function(err, rows){
-    console.log("rows : "+ JSON.stringify(rows));
-  })
 });
 
 //member/phone
@@ -75,7 +70,7 @@ router.post('/info', function(req, res) {
   db.get().query(sql_count, phone, function (err, rows) {
     if (rows[0].cnt > 0) {
       console.log("sql_update : " + sql_update);
-
+      
       db.get().query(sql_update, [name, sextype, birthday, phone], function (err, result) {
         if (err) return res.sendStatus(400);
         console.log(result);
