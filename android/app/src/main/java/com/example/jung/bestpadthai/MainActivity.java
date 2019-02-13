@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity
         profileIconImage.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 drawer.closeDrawer(GravityCompat.START);
-//                GoLib.getInstance().goProfileActivity(MainActivity.this); 아직 profileActivity를 작성하지 않았으므로 주석처리 해야함.
+                GoLib.getInstance().goProfileActivity(MainActivity.this);
 
             }
         });

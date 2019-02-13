@@ -25,7 +25,7 @@ import retrofit2.http.Query;
  * 서버에 호출할 메소드를 선언하는 인터페이스
  */
 public interface RemoteService {
-    String BASE_URL = "http://192.168.43.94:3000"; //My phone's hot spot IP address.
+    String BASE_URL = "http://192.168.81.38:3000"; //My phone's hot spot IP address.
     String MEMBER_ICON_URL = BASE_URL + "/member/";
     String IMAGE_URL = BASE_URL + "/img/";
 

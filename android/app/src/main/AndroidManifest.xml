@@ -27,6 +27,7 @@
                   android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name =".IndexActivity"/>
         <activity android:name =".ProfileActivity"/>
+        <activity android:name = ".ProfileIconActivity"/>
     </application>
 
 

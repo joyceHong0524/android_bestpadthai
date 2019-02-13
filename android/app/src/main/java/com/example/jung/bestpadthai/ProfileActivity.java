@@ -333,8 +333,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         //activate profileIconActivity to change profile picture
         private void startProfileIconChange() {
-//            Intent intent = new Intent(this,ProfileIconActivity.class);
-//            startActivity(intent);
+          Intent intent = new Intent(this,ProfileIconActivity.class);
+          startActivity(intent);
         }
 
 
