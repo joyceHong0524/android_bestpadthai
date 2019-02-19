@@ -24,10 +24,12 @@
             </intent-filter>
         </activity>
         <activity android:name =".MainActivity"
-                  android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name =".IndexActivity"/>
         <activity android:name =".ProfileActivity"/>
         <activity android:name = ".ProfileIconActivity"/>
+        <activity android:name = ".BestPadthaiRegisterActivity"/>
+
     </application>
 
 

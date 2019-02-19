@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_keep) {
 //            GoLib.getInstance().goFragment(getSupportFragmentManager(), R.id.content_main,BestFoodKeepFragment.newInstance());
         } else if (id == R.id.nav_register) {
-//            GoLib.getInstance().goBestFoodRegisterActivity(this);
+            GoLib.getInstance().goBestPadthaiRegisterActivity(this);
         } else if (id == R.id.nav_profile){
             GoLib.getInstance().goProfileActivity(this);
         }

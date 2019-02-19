@@ -2,10 +2,12 @@ package com.example.jung.bestpadthai.item;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
+
 /**
  * 맛집 정보를 저장하는 객체
  */
-
+@Parcel
 public class FoodInfoItem {
     public int seq;
     @SerializedName("member_seq") public int memberSeq;

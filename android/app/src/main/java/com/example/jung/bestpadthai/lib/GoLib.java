@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentManager;
 import com.example.jung.bestpadthai.ProfileActivity;
 
 //import com.example.jung.bestpadthai.BestFoodInfoActivity;
-//import com.example.jung.bestpadthai.BestFoodRegisterActivity;
+import com.example.jung.bestpadthai.BestPadthaiRegisterActivity;
 //import com.example.jung.bestpadthai.ProfileActivity;
 
 /**
@@ -73,16 +73,16 @@ public class GoLib {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
-//
-//    /**
-//     * 맛집 정보 등록 액티비티를 실행한다.
-//     * @param context 컨텍스트
-//     */
-//    public void goBestFoodRegisterActivity(Context context) {
-//        Intent intent = new Intent(context, BestFoodRegisterActivity.class);
-//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        context.startActivity(intent);
-//    }
+
+    /**
+     * 맛집 정보 등록 액티비티를 실행한다.
+     * @param context 컨텍스트
+     */
+    public void goBestPadthaiRegisterActivity(Context context) {
+        Intent intent = new Intent(context, BestPadthaiRegisterActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
 
 
     /**
