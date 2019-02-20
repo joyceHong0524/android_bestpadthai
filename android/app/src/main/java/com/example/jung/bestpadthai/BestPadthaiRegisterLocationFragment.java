@@ -105,8 +105,8 @@ public class BestPadthaiRegisterLocationFragment extends Fragment implements Vie
 
     @Override
     public void onClick(View v) {
-//        GoLib.getInstance().goFragment(getFragmentManager(),
-//                R.id.content_main, BestPadthaiRegisterInputFragment.newInstance(infoItem));
+        GoLib.getInstance().goFragment(getFragmentManager(),
+                R.id.content_main, BestPadthaiRegisterInputFragment.newInstance(infoItem));
     }
 
     @Override

@@ -9,15 +9,136 @@
         android:background="@color/bg_default"
         android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="맛집 정보"
+        android:padding="@dimen/spacing_medium"
+        android:textSize="@dimen/text_size_medium"
+        android:textColor="@color/text_color_black"
+        android:textStyle="bold"
+        />
     <EditText
         android:id="@+id/bestfood_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_small"
+        android:background="@drawable/bg_round"
+        android:gravity="start"
+        android:hint="@string/input_bestfood_name"
+        android:maxLength="20"
+        android:maxLines="1"
+        android:padding="@dimen/spacing_medium"
+        android:textSize="@dimen/text_size_small2"
         />
 
+    <EditText
+        android:id="@+id/bestfood_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_small"
+        android:background ="@drawable/bg_round"
+        android:gravity="start"
+        android:hint="@string/input_bestfood_address"
+        android:maxLines="1"
+        android:padding="@dimen/spacing_medium"
+        android:textSize="@dimen/text_size_small2"/>
+
+
+    <EditText
+        android:id="@+id/bestfood_tel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_small"
+        android:background="@drawable/bg_round"
+        android:gravity="start"
+        android:hint="@string/input_bestfood_tel"
+        android:inputType="phone"
+        android:maxLength="13"
+        android:maxLines="1"
+        android:padding="@dimen/spacing_medium"
+        android:textSize="@dimen/text_size_small2"/>
+
+    <LinearLayout
+        android:id="@+id/current_text_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_small"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/spacing_small"
+            android:text="@string/input_text_length"
+            android:textColor="@color/text_color_black"
+            android:textSize="@dimen/text_size_small"/>
+        <TextView
+            android:id="@+id/current_length"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="@color/text_color_black"
+            android:textSize="@dimen/text_size_small"/>
+
+        <TextView
+            android:id="@+id/text_max_length"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/input_text_max_length"
+            android:textColor="@color/text_color_black"
+            android:textSize="@dimen/text_size_small"/>
     </LinearLayout>
 
+        <EditText
+            android:id="@+id/bestfood_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_small"
+            android:background="@drawable/bg_round"
+            android:fadeScrollbars="false"
+            android:gravity="start"
+            android:hint="@string/input_bestfood_description"
+            android:lines="9"
+            android:maxLength="500"
+            android:overScrollMode="always"
+            android:padding="@dimen/spacing_medium"
+            android:scrollbars="vertical"
+            android:scrollbarStyle="insideInset"
+            android:textSize="@dimen/text_size_small2"/>
 
+
+
+    <LinearLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/prev"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_small"
+            android:layout_weight="1"
+            android:background="@drawable/button_round"
+            android:text="@string/prev"
+            android:textSize="@dimen/text_size_small2"/>
+
+        <Button
+            android:id="@+id/next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_small"
+            android:layout_weight="1"
+            android:background="@drawable/button_round"
+            android:text="@string/next"
+            android:textSize="@dimen/text_size_small2"/>
+    </LinearLayout>
+    </LinearLayout>
 
 
 </ScrollView>
