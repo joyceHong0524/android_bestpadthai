@@ -253,7 +253,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 finish();
             } else if (isNoName(newItem)){
                 MyToast.s(context,R.string.name_need);
-                finish();
+                //finish(); 오류가 날 수 있어서 일단 막아놓는다.
             } else {
                 new AlertDialog.Builder(this).setTitle(R.string.change_save)
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {

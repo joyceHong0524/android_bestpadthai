@@ -217,7 +217,7 @@ public class BestPadthaiRegisterInputFragment extends Fragment implements View.O
         }
 
         private void goNextPage() {
-//        GoLib.getInstance().goFragmentBack(getFragmentManager(),r.id.content_main,BestPadthaiRegisterImageFragment.newInstance(infoItem.seq));
+        GoLib.getInstance().goFragmentBack(getFragmentManager(),R.id.content_main,BestPadthaiRegisterImageFragment.newInstance(infoItem.seq));
         }
 
 }
