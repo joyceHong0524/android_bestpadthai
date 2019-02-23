@@ -51,15 +51,36 @@ public class BestPadthaiRegisterImageFragment extends Fragment implements View.O
     EditText imageMemoEdit;
     ImageView infoImage;
 
-    ImageItem imageItem; //instance which saves a lot of informations of the image.
+    ImageItem imageItem;
 
-    boolean isSavingImage = false; //this is for
+    boolean isSavingImage = false;
 
-    //returns fragment instance which saves FoodInfoItem as parameter.
-    //But unlike past 2 fragments, this only uses sequence of the infoItem.
-    public static BestPadthaiRegisterImageFragment newInstance(int infoSeq){
+    Target mTarget = new Target() {
+        @Override
+        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+            BitmapLib.getInstance().saveBitmapToFileThread(imageUploadHandler,
+                    imageFile, bitmap);
+            isSavingImage = true;
+        }
+
+        @Override
+        public void onBitmapFailed(Drawable errorDrawable) {
+        }
+
+        @Override
+        public void onPrepareLoad(Drawable placeHolderDrawable) {
+        }
+    };
+
+    /**
+     * FoodInfoItem 객체를 인자로 저장하는
+     * BestFoodRegisterInputFragment 인스턴스를 생성해서 반환한다.
+     * @param infoSeq 서버에 저장한 맛집 정보에 대한 시퀀스
+     * @return BestFoodRegisterImageFragment 인스턴스
+     */
+    public static BestPadthaiRegisterImageFragment newInstance(int infoSeq) {
         Bundle bundle = new Bundle();
-        bundle.putInt(INFO_SEQ,infoSeq);
+        bundle.putInt(INFO_SEQ, infoSeq);
 
         BestPadthaiRegisterImageFragment f = new BestPadthaiRegisterImageFragment();
         f.setArguments(bundle);
@@ -67,149 +88,164 @@ public class BestPadthaiRegisterImageFragment extends Fragment implements View.O
         return f;
     }
 
-    //saves INFO_SEQ in the variable of current instance.
-    //called when the new fragment instance is being made.
+    /**
+     * 프래그먼트가 생성될 때 호출되며 인자에 저장된 INFO_SEQ를 멤버 변수 infoSeq에 저장한다.
+     * @param savedInstanceState 프래그먼트가 새로 생성되었을 경우, 이전 상태 값을 가지는 객체
+     */
     @Override
-    public void onCreate(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(getArguments()!=null){
-            infoSeq= getArguments().getInt(INFO_SEQ);
+        if (getArguments() != null) {
+            infoSeq = getArguments().getInt(INFO_SEQ);
         }
     }
 
-
-
-    //generates a fragment view
+    /**
+     * fragment_bestfood_register_image.xml 기반으로 뷰를 생성한다.
+     * @param inflater XML를 객체로 변환하는 LayoutInflater 객체
+     * @param container null이 아니라면 부모 뷰
+     * @param savedInstanceState null이 아니라면 이전에 저장된 상태를 가진 객체
+     * @return 생성한 뷰 객체
+     */
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         context = this.getActivity();
-        View v = inflater.inflate(R.layout.fragment_bestpadthai_register_image,container,false);
+        View v = inflater.inflate(R.layout.fragment_bestpadthai_register_image, container, false);
+
         return v;
     }
 
-    //called after finishing onCreateView.
-    //It sets basic variables and registers click events.
+    /**
+     * onCreateView() 메소드 뒤에 호출되며 기본 정보 생성과 화면 처리를 한다.
+     * @param view onCreateView() 메소드에 의해 반환된 뷰
+     * @param savedInstanceState null이 아니라면 이전에 저장된 상태를 가진 객체
+     */
     @Override
-    public void onViewCreated(View view,Bundle savedInstanceState){
-        super.onViewCreated(view,savedInstanceState);
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         imageItem = new ImageItem();
         imageItem.infoSeq = infoSeq;
 
-        imageFilename = infoSeq + "_" +String.valueOf(System.currentTimeMillis());
+        imageFilename = infoSeq + "_" + String.valueOf(System.currentTimeMillis());
         imageFile = FileLib.getInstance().getImageFile(context, imageFilename);
 
         infoImage = (ImageView) view.findViewById(R.id.bestfood_image);
         imageMemoEdit = (EditText) view.findViewById(R.id.register_image_memo);
 
         ImageView imageRegister = (ImageView) view.findViewById(R.id.bestfood_image_register);
-
         imageRegister.setOnClickListener(this);
 
         view.findViewById(R.id.prev).setOnClickListener(this);
         view.findViewById(R.id.complete).setOnClickListener(this);
     }
 
-    //starts an activity to get an image from camera.
+    /**
+     * 이미지를 촬영하고 그 결과를 받을 수 있는 액티비티를 시작한다.
+     */
     private void getImageFromCamera() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
         context.startActivityForResult(intent, PICK_FROM_CAMERA);
     }
 
-    //starts an activity to get an image from album.
+    /**
+     * 앨범으로부터 이미지를 선택할 수 있는 액티비티를 시작한다.
+     */
     private void getImageFromAlbum() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
-        context.startActivityForResult(intent,PICK_FROM_ALBUM);
+        context.startActivityForResult(intent, PICK_FROM_ALBUM);
     }
 
-    //handles click events
+    /**
+     * 클릭이벤트를 처리한다.
+     * @param v 클릭한 뷰에 대한 정보
+     */
     @Override
     public void onClick(View v) {
-
-        switch (v.getId()){
-            case R.id.bestfood_image_register :
-                showImageDialog(context);
-                break;
-            case R.id.complete:
-                saveImage();
-                break;
-            case R.id.prev:
-                GoLib.getInstance().goBackFragment(getFragmentManager());
-                break;
+        if (v.getId() == R.id.bestfood_image_register) {
+            showImageDialog(context);
+        } else if (v.getId() == R.id.complete) {
+            saveImage();
+        } else if (v.getId() == R.id.prev) {
+            GoLib.getInstance().goBackFragment(getFragmentManager());
         }
     }
 
+    /**
+     * 다른 액티비티를 실행한 결과를 처리하는 메소드
+     * @param requestCode 액티비티를 실행하면서 전달한 요청 코드
+     * @param resultCode 실행한 액티비티가 설정한 결과 코드
+     * @param data 결과 데이터
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(resultCode == Activity.RESULT_OK){
+        if (resultCode == Activity.RESULT_OK) {
+            MyLog.d("activity result okay");
             if (requestCode == PICK_FROM_CAMERA) {
                 Picasso.with(context).load(imageFile).into(infoImage);
+
             } else if (requestCode == PICK_FROM_ALBUM && data != null) {
+                MyLog.d("request code is pick from album");
                 Uri dataUri = data.getData();
 
                 if (dataUri != null) {
                     Picasso.with(context).load(dataUri).into(infoImage);
-                    Picasso.with(context).load(dataUri).into(new Target() {
-                        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from){
-                            BitmapLib.getInstance().saveBitmapToFileThread(imageUploadHandler, imageFile,bitmap);
-                            isSavingImage = true;
 
-                        }
-
-                        public void onBitmapFailed(Drawable errorDrawable) {
-
-                        }
-
-                        public void onPrepareLoad(Drawable placeHolerDrawable){
-
-                        }
-                    });
+                    Picasso.with(context).load(dataUri).into(mTarget);
                 }
+            } else {
+                MyLog.d("What the fuck is wrong now");
             }
         }
     }
 
-
-    //saves selected image and memo in the ImageItem.
-    private void setImageItem() {
+    /**
+     * 사용자가 선택한 이미지와 입력한 메모를 ImageItem 객체에 저장한다.
+     */
+    private  void setImageItem() {
         String imageMemo = imageMemoEdit.getText().toString();
-        if (StringLib.getInstance().isBlank(imageMemo)){
+        if (StringLib.getInstance().isBlank(imageMemo)) {
             imageMemo = "";
         }
 
         imageItem.imageMemo = imageMemo;
         imageItem.fileName = imageFilename + ".png";
-
     }
 
-    //saves image on server
+    /**
+     * 이미지를 서버에 업로드한다.
+     */
     private void saveImage() {
-        if(isSavingImage)
-        {
+        if (isSavingImage) {
             MyToast.s(context, R.string.no_image_ready);
             return;
         }
         MyLog.d(TAG, "imageFile.length() " + imageFile.length());
 
-        if(imageFile.length()==0) {
+        if (imageFile.length() == 0) {
             MyToast.s(context, R.string.no_image_selected);
             return;
         }
 
         setImageItem();
 
-        RemoteLib.getInstance().uploadFoodImage(infoSeq, imageItem.imageMemo, imageFile, finishiHandler);
-        isSavingImage=  false;
+        RemoteLib.getInstance().uploadFoodImage(infoSeq,
+                imageItem.imageMemo, imageFile, finishHandler);
+        isSavingImage = false;
     }
 
-    //shows dialog makes user decide the way select the image.
-    public void showImageDialog(Context context){
-        new AlertDialog.Builder(context).setTitle(R.string.title_bestfood_image_register)
+    /**
+     * 이미지를 어떤 방식으로 선택할지에 대해 다이얼로그를 보여준다.
+     * @param context 컨텍스트 객체
+     */
+    public void showImageDialog(Context context) {
+        new AlertDialog.Builder(context)
+                .setTitle(R.string.title_bestfood_image_register)
                 .setSingleChoiceItems(R.array.camera_album_category, -1,
                         new DialogInterface.OnClickListener() {
                             @Override
@@ -219,12 +255,14 @@ public class BestPadthaiRegisterImageFragment extends Fragment implements View.O
                                 } else {
                                     getImageFromAlbum();
                                 }
+
                                 dialog.dismiss();
                             }
                         }).show();
     }
 
-    Handler imageUploadHandler = new Handler(){
+    Handler imageUploadHandler = new Handler() {
+        @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             isSavingImage = false;
@@ -233,12 +271,12 @@ public class BestPadthaiRegisterImageFragment extends Fragment implements View.O
         }
     };
 
-    Handler finishiHandler = new Handler() {
+    Handler finishHandler = new Handler() {
+        @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
 
             context.finish();
         }
     };
-
 }
