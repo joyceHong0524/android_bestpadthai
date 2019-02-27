@@ -90,9 +90,9 @@ public class GoLib {
      * @param context 컨텍스트
      * @param infoSeq 맛집 정보 일련번호
      */
-//    public void goBestFoodInfoActivity(Context context, int infoSeq) {
-//        Intent intent = new Intent(context, BestFoodInfoActivity.class);
-//        intent.putExtra(BestFoodInfoActivity.INFO_SEQ, infoSeq);
+    public void goBestPadthaiInfoActivity(Context context, int infoSeq) {
+//        Intent intent = new Intent(context, BestPadthaiInfoActivity.class);
+//        intent.putExtra(BestPadthaiInfoActivity.INFO_SEQ, infoSeq);
 //        context.startActivity(intent);
-//    }
+    }
 }

@@ -78,7 +78,7 @@ public class BestPadthaiListFragment extends Fragment implements View.OnClickLis
         MyApp myApp = ((MyApp) getActivity().getApplication());
         FoodInfoItem currentInfoItem = myApp.getFoodInfoItem();
 
-        if (infolistAdapter != null && currentInfoItem != null){
+        if (infoListAdapter != null && currentInfoItem != null){
             infoListAdapter.setItem(currentInfoItem);
             myApp.setFoodInfoItem(null);
 
@@ -172,17 +172,19 @@ public class BestPadthaiListFragment extends Fragment implements View.OnClickLis
     public void onClick(View v){
         if (v.getId() == R.id.list_type){
             changeListType();
+            setRecyclerView();
+            listInfo(memberSeq, GeoItem.getKnownLocation(), orderType, 0);
         } else {
             if (v.getId() == R.id.order_meter) {
                 orderType = Constant.ORDER_TYPE_METER;
                 setOrderTextColor(R.color.text_color_green,R.color.text_color_black,R.color.text_color_black);
             }
             else if (v.getId() == R.id.order_favorite) {
-                orderType = Constant.ORDER_TYPE_METER;
+                orderType = Constant.ORDER_TYPE_FAVORITE;
                 setOrderTextColor(R.color.text_color_black,R.color.text_color_green,R.color.text_color_black);
             }
             else if (v.getId() == R.id.order_recent) {
-                orderType = Constant.ORDER_TYPE_METER;
+                orderType = Constant.ORDER_TYPE_RECENT;
                 setOrderTextColor(R.color.text_color_black,R.color.text_color_black,R.color.text_color_green);
             }
 
@@ -203,7 +205,9 @@ public class BestPadthaiListFragment extends Fragment implements View.OnClickLis
         if(listTypeValue == 1){
             listTypeValue = 2;
             listType.setImageResource(R.drawable.ic_list2);
-        } else {
+
+
+        } else if(listTypeValue ==2) {
             listTypeValue =1;
             listType.setImageResource(R.drawable.ic_list);
         }

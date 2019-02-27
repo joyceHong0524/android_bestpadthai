@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity
 
         headerLayout = navigationView.getHeaderView(0);
 
-//        GoLib.getInstance().goFragment(getSupportFragmentManager(),R.id.content_main,BestFoodListFragment.newInstance());
+        GoLib.getInstance().goFragment(getSupportFragmentManager(),R.id.content_main,BestPadthaiListFragment.newInstance());
 
 //        profileIconImage.setOnClickListener(new View.OnClickListener(){
 //            @Override
@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity
 
 
         if (id == R.id.nav_list) {
-//            GoLib.getInstance().goFragment(getSupportFragmentManager(), R.id.content_main,BestFoodListFragment.newInstance());
+            GoLib.getInstance().goFragment(getSupportFragmentManager(), R.id.content_main,BestPadthaiListFragment.newInstance());
         } else if (id == R.id.nav_map) {
 //            GoLib.getInstance().goFragment(getSupportFragmentManager(), R.id.content_main,BestFoodMapFragment.newInstance());
         } else if (id == R.id.nav_keep) {
