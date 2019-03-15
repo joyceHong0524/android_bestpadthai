@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
+import com.example.jung.bestpadthai.BestPadthaiInfoActivity;
 import com.example.jung.bestpadthai.ProfileActivity;
 
 //import com.example.jung.bestpadthai.BestFoodInfoActivity;
@@ -91,8 +92,8 @@ public class GoLib {
      * @param infoSeq 맛집 정보 일련번호
      */
     public void goBestPadthaiInfoActivity(Context context, int infoSeq) {
-//        Intent intent = new Intent(context, BestPadthaiInfoActivity.class);
-//        intent.putExtra(BestPadthaiInfoActivity.INFO_SEQ, infoSeq);
-//        context.startActivity(intent);
+        Intent intent = new Intent(context, BestPadthaiInfoActivity.class);
+        intent.putExtra(BestPadthaiInfoActivity.INFO_SEQ, infoSeq);
+        context.startActivity(intent);
     }
 }

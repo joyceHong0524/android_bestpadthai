@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/keep_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:dividerHeight="@dimen/spacing_small"/>
+
+    <TextView
+        android:id="@+id/no_keep"
+        android:background="@android:color/holo_red_dark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/no_keep"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_small2"
+        android:textStyle="bold"
+        android:padding="@dimen/spacing_small"
+        android:visibility="gone"
+        />
+</RelativeLayout>
