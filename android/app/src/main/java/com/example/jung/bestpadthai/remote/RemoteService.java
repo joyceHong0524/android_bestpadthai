@@ -25,7 +25,7 @@ import retrofit2.http.Query;
  * 서버에 호출할 메소드를 선언하는 인터페이스
  */
 public interface RemoteService {
-    String BASE_URL ="http://10.40.146.201:3000";
+    String BASE_URL ="http://172.16.120.118:3000";
             //"http://192.168.1.43:3000"; //The Line sukhumvit 71
             //http://192.168.1.129:3000
     String MEMBER_ICON_URL = BASE_URL + "/member/";

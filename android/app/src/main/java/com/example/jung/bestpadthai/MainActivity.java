@@ -143,10 +143,8 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_list) {
             GoLib.getInstance().goFragment(getSupportFragmentManager(), R.id.content_main,BestPadthaiListFragment.newInstance());
-        } else if (id == R.id.nav_map) {
-//            GoLib.getInstance().goFragment(getSupportFragmentManager(), R.id.content_main,BestFoodMapFragment.newInstance());
         } else if (id == R.id.nav_keep) {
-//            GoLib.getInstance().goFragment(getSupportFragmentManager(), R.id.content_main,BestFoodKeepFragment.newInstance());
+            GoLib.getInstance().goFragment(getSupportFragmentManager(), R.id.content_main,BestPadthaiKeepFragment.newInstance());
         } else if (id == R.id.nav_register) {
             GoLib.getInstance().goBestPadthaiRegisterActivity(this);
         } else if (id == R.id.nav_profile){
