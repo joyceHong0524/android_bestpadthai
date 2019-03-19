@@ -34,8 +34,6 @@ public class MainActivity extends AppCompatActivity
     View headerLayout;
 
     CircleImageView profileIconImage;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
